@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <modules>
+        <Soularpanic_ExternalReviews>
+            <version>0.0.1</version>
+        </Soularpanic_ExternalReviews>
+    </modules>
+
+    <global>
+        <models>
+            <externalreviews>
+                <class>Soularpanic_ExternalReviews_Model</class>
+            </externalreviews>
+            <externalreviews_resource>
+                <class>Soularpanic_ExternalReviews_Model_Resource</class>
+                <entities>
+                    <externalreview>
+                        <table>externalreview_reviews</table>
+                    </externalreview>
+                </entities>
+            </externalreviews_resource>
+        </models>
+
+        <resources>
+            <externalreviews_setup>
+                <setup>
+                    <module>Soularpanic_ExternalReviews</module>
+                    <class>Soularpanic_ExternalReviews_Model_Resource_Setup</class>
+                </setup>
+            </externalreviews_setup>
+        </resources>
+    </global>
+
+</config>
