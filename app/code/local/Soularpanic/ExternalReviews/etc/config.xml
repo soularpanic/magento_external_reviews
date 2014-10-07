@@ -11,13 +11,15 @@
         <models>
             <externalreviews>
                 <class>Soularpanic_ExternalReviews_Model</class>
+                <resourceModel>externalreviews_resource</resourceModel>
             </externalreviews>
+
             <externalreviews_resource>
                 <class>Soularpanic_ExternalReviews_Model_Resource</class>
                 <entities>
-                    <externalreview>
+                    <review>
                         <table>externalreview_reviews</table>
-                    </externalreview>
+                    </review>
                 </entities>
             </externalreviews_resource>
         </models>
