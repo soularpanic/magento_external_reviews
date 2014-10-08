@@ -1,0 +1,52 @@
+<?php $_review = $this->getReview(); ?>
+<h1>ID: [<?php echo $_review->getId() ?>]</h1>
+
+<form id="externalreviews_modify_form" method="POST" enctype="multipart/form-data" action="<?php echo $this->getUrl('*/*/save') ?>">
+    <table>
+        <tbody>
+        <tr>
+            <td>
+                <label for="review[name]">Reviewer Name</label>
+            </td>
+            <td>
+                <input type="text" placeholder="Reviewer Name" id="review[name]" name="review[name]" value="<?php echo $_review->getNickname() ?>"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="review[detail]">Review</label>
+            </td>
+            <td>
+                <textarea placeholder="Review HTML" id="review[detail]" name="review[detail]"><?php echo $_review->getDetail() ?></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="review[source_banner_url]">Banner Image</label>
+            </td>
+            <td>
+                <input type="file" id="review[source_banner_url]" name="review[source_banner_url]"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="review[source_image_url]">Cover Image</label>
+            </td>
+            <td>
+                <input type="file" id="review[source_image_url]" name="review[source_image_url]"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="hidden" name="review[id]" value="<?php echo $_review->getId() ?>"/>
+                <input type="hidden" name="form_key" value="<?php echo $this->getFormKey() ?>"/>
+                <input type="submit" value="Submit"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+<hr/>
+
+<?php echo $this->getForm()->getHtml() ?>

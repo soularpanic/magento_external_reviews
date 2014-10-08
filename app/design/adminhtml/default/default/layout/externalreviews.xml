@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout>
+
+    <adminhtml_externalreviews_index>
+        <reference name="content">
+            <block type="core/template" name="foo" as="foo" template="ExternalReviews/manage.phtml"/>
+        </reference>
+    </adminhtml_externalreviews_index>
+
+    <adminhtml_externalreviews_modify>
+        <reference name="head">
+            <action method="addItem"><type>js_css</type><name>prototype/windows/themes/default.css</name></action>
+            <action method="addItem"><type>js_css</type><name>prototype/windows/themes/magento.css</name></action>
+            <action method="addJs"><script>lib/flex.js</script></action>
+            <action method="addJs"><script>lib/FABridge.js</script></action>
+            <action method="addJs"><script>mage/adminhtml/flexuploader.js</script></action>
+            <action method="addJs"><script>mage/adminhtml/browser.js</script></action>
+        </reference>
+        <reference name="content">
+            <block type="externalreviews/adminhtml_modify" name="form" as="form" template="ExternalReviews/modify.phtml"/>
+        </reference>
+    </adminhtml_externalreviews_modify>
+
+</layout>

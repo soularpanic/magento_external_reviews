@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+
+
+    <menu>
+        <catalog>
+            <children>
+                <reviews_ratings>
+                    <children>
+                        <externals translate="title" module="externalreviews">
+                            <title>External Reviews</title>
+                            <action>adminhtml/externalreviews/index</action>
+                            <sort_order>30</sort_order>
+                        </externals>
+                    </children>
+                </reviews_ratings>
+            </children>
+        </catalog>
+    </menu>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <catalog>
+                        <children>
+                            <reviews_ratings>
+                                <children>
+                                    <externals translate="title" module="externalreviews">
+                                        <title>External Reviews</title>
+                                        <sort_order>30</sort_order>
+                                    </externals>
+                                </children>
+                            </reviews_ratings>
+                        </children>
+                    </catalog>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+</config>

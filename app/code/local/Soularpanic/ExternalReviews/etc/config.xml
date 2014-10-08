@@ -32,6 +32,40 @@
                 </setup>
             </externalreviews_setup>
         </resources>
+
+        <blocks>
+            <externalreviews>
+                <class>Soularpanic_ExternalReviews_Block</class>
+            </externalreviews>
+        </blocks>
+
+        <helpers>
+            <externalreviews>
+                <class>Soularpanic_ExternalReviews_Helper</class>
+            </externalreviews>
+        </helpers>
     </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Soularpanic_ExternalReviews after="Mage_Adminhtml">Soularpanic_ExternalReviews</Soularpanic_ExternalReviews>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <soularpanic_externals>
+                    <file>externalreviews.xml</file>
+                </soularpanic_externals>
+            </updates>
+        </layout>
+    </adminhtml>
 
 </config>
