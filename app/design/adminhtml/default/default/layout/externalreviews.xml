@@ -4,7 +4,7 @@
 
     <adminhtml_externalreviews_index>
         <reference name="content">
-            <block type="core/template" name="foo" as="foo" template="ExternalReviews/manage.phtml"/>
+            <block type="externalreviews/adminhtml_manage" name="foo" as="foo" template="ExternalReviews/manage.phtml"/>
         </reference>
     </adminhtml_externalreviews_index>
 

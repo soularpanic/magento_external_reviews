@@ -1,5 +1,13 @@
-<?php $_review = $this->getReview(); ?>
-<h1>ID: [<?php echo $_review->getId() ?>]</h1>
+<?php
+$_review = $this->getReview();
+$_reviewId = $_review->getId();
+?>
+
+<?php if ($_reviewId): ?>
+    <h1>Editing External Review #<?php echo $_reviewId ?></h1>
+<?php else: ?>
+    <h1>Create a New External Review</h1>
+<?php endif; ?>
 
 <form id="externalreviews_modify_form" method="POST" enctype="multipart/form-data" action="<?php echo $this->getUrl('*/*/save') ?>">
     <table>
@@ -9,7 +17,7 @@
                 <label for="review[name]">Reviewer Name</label>
             </td>
             <td>
-                <input type="text" placeholder="Reviewer Name" id="review[name]" name="review[name]" value="<?php echo $_review->getNickname() ?>"/>
+                <input type="text" placeholder="Reviewer Name" id="review[nickname]" name="review[nickname]" value="<?php echo $_review->getNickname() ?>"/>
             </td>
         </tr>
         <tr>
@@ -25,7 +33,8 @@
                 <label for="review[source_banner_url]">Banner Image</label>
             </td>
             <td>
-                <input type="file" id="review[source_banner_url]" name="review[source_banner_url]"/>
+                <button type="button" class="scalable add-image plugin" onclick="MediabrowserUtility.openDialog('<?php echo $this->getImageControlUrl('review[source_banner_url]'); ?>');">Choose Image</button>
+                <input type="text" id="review[source_banner_url]" name="review[source_banner_url]" value="<?php echo $_review->getSourceBannerUrl() ?>"/>
             </td>
         </tr>
         <tr>
@@ -33,12 +42,13 @@
                 <label for="review[source_image_url]">Cover Image</label>
             </td>
             <td>
-                <input type="file" id="review[source_image_url]" name="review[source_image_url]"/>
+                <button type="button" class="scalable add-image plugin" onclick="MediabrowserUtility.openDialog('<?php echo $this->getImageControlUrl('review[source_image_url]'); ?>');">Choose Image</button>
+                <input type="text" id="review[source_image_url]" name="review[source_image_url]" value="<?php echo $_review->getSourceImageUrl() ?>"/>
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                <input type="hidden" name="review[id]" value="<?php echo $_review->getId() ?>"/>
+                <input type="hidden" name="review[id]" value="<?php echo $_reviewId ?>"/>
                 <input type="hidden" name="form_key" value="<?php echo $this->getFormKey() ?>"/>
                 <input type="submit" value="Submit"/>
             </td>
@@ -46,7 +56,3 @@
         </tbody>
     </table>
 </form>
-
-<hr/>
-
-<?php echo $this->getForm()->getHtml() ?>

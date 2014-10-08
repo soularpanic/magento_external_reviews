@@ -18,6 +18,7 @@ class Soularpanic_ExternalReviews_ExternalreviewsController
         }
 
         $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
+        $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
 
         $form->setReview($review);
         $this->renderLayout();
@@ -28,11 +29,15 @@ class Soularpanic_ExternalReviews_ExternalreviewsController
         $id = $data['id'];
         $review = Mage::getModel('externalreviews/review');
         if ($id) {
+            unset($data['id']);
             $review->load($id);
         }
 
-        $review->setNickname($data['name']);
-        $review->setDetail($data['detail']);
+        $review->setData($data);
+
+        if ($id) {
+            $review->setId($id);
+        }
 
         $review->save();
 

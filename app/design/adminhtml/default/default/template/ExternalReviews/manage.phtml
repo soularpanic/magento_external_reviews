@@ -1,5 +1,29 @@
-<ul>
-    <li><a href="<?php echo Mage::helper('adminhtml')->getUrl('*/*/modify') ?>">Create</a></li>
-    <li><a href="<?php echo Mage::helper('adminhtml')->getUrl('*/*/modify', array('review_id' => '1')) ?>">Update</a></li>
-    <li>Delete</li>
-</ul>
+<?php $_reviews = $this->getReviews(); ?>
+
+<h2>There are <?php echo count($_reviews) ?> reviews</h2>
+
+<form method="GET" action="<?php echo Mage::helper('adminhtml')->getUrl('*/*/modify') ?>">
+    <button type="submit" style="float: right; margin: 5px; padding: 2px 5px 2px 5px;">Create New Review</button>
+</form>
+<table border="1" style="width:100%">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Reviewer</th>
+        <th>Detail</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($_reviews as $_review): ?>
+        <tr>
+            <td><?php echo $_review->getId() ?></td>
+            <td><?php echo $_review->getNickname() ?></td>
+            <th><?php echo substr($this->escapeHtml($_review->getDetail()), 0, 75) ?></th>
+            <th><a href="<?php echo Mage::helper('adminhtml')->getUrl('*/*/modify', array('review_id' => $_review->getId())) ?>">Edit</a></th>
+            <th><a href="<?php echo Mage::helper('adminhtml')->getUrl('*/*/delete', array('review_id' => $_review->getId())) ?>">Delete</a></th>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
