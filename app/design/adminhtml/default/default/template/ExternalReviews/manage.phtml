@@ -20,9 +20,9 @@
         <tr>
             <td><?php echo $_review->getId() ?></td>
             <td><?php echo $_review->getNickname() ?></td>
-            <th><?php echo substr($this->escapeHtml($_review->getDetail()), 0, 75) ?></th>
-            <th><a href="<?php echo Mage::helper('adminhtml')->getUrl('*/*/modify', array('review_id' => $_review->getId())) ?>">Edit</a></th>
-            <th><a href="<?php echo Mage::helper('adminhtml')->getUrl('*/*/delete', array('review_id' => $_review->getId())) ?>">Delete</a></th>
+            <td><?php echo substr($this->escapeHtml($_review->getDetail()), 0, 75) ?></td>
+            <td><a href="<?php echo Mage::helper('adminhtml')->getUrl('*/*/modify', array('review_id' => $_review->getId())) ?>">Edit</a></td>
+            <td><a href="<?php echo Mage::helper('adminhtml')->getUrl('*/*/delete', array('review_id' => $_review->getId())) ?>">Delete</a></td>
         </tr>
     <?php endforeach; ?>
     </tbody>

@@ -29,14 +29,14 @@ class Soularpanic_ExternalReviews_ExternalreviewsController
         $id = $data['id'];
         $review = Mage::getModel('externalreviews/review');
         if ($id) {
-            unset($data['id']);
             $review->load($id);
         }
 
-        $review->setData($data);
+        $review->setNickname($data['nickname']);
+        $review->setDetail($data['detail']);
 
-        if ($id) {
-            $review->setId($id);
+        foreach (array('source_banner_url', 'source_image_url', 'source_icon_url') as $imageKey) {
+            $review->setData($imageKey, $this->_publicizeCmsUrl($data[$imageKey]));
         }
 
         $review->save();
@@ -45,7 +45,30 @@ class Soularpanic_ExternalReviews_ExternalreviewsController
     }
 
     public function deleteAction() {
+        $reviewId = $this->getRequest()->getParam('review_id');
+        if ($reviewId) {
+            Mage::getModel('externalreviews/review')->load($reviewId)->delete();
+        }
+        $this->_redirect('*/*/index');
+    }
 
+    const ADMIN_PATTERN = '/___directive\/([^\/]+)\//';
+    const MEDIA_TAG_PATTERN = '/ url="([^"]+)"/';
+
+    protected function _publicizeCmsUrl($url) {
+        $matches = array();
+        $match = preg_match(self::ADMIN_PATTERN, $url, $matches);
+        if ($match === 1) {
+            $directive = $matches[1];
+            $mediaStr = base64_decode($directive);
+            $mediaMatches = array();
+            $mediaMatch = preg_match(self::MEDIA_TAG_PATTERN, $mediaStr, $mediaMatches);
+            if ($mediaMatch === 1) {
+                $mediaPath = $mediaMatches[1];
+                return Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$mediaPath;
+            }
+        }
+        return $url;
     }
 
 }
